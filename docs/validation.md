@@ -1,0 +1,22 @@
+# 初版の検証結果
+
+確認日：2026-09-15〜16
+
+## 成功した検証
+
+- TypeScript型チェック、本番Webビルド。
+- Vitest：28件。番号パーサ、採点、同語句交換、別解、スナップショット、タグ条件、CSV、XLSX、バックアップ参照整合性、SQLite保存・再起動・書き込み失敗時の原データ保全。
+- Edge E2E：3件。編集→保存→再読み込み→学習→履歴、一括採点と回答復元、CSV→セット→抽出。
+- Windowsデスクトップ E2E：1件。生成した `release/win-unpacked/Phrase.exe` を独立した一時データ領域で2回起動し、フォルダとセットの保存・再起動後復元を確認。
+- electron-builder：Windows x64 portable作成成功。格納したmainプロセスのコードが最新ソースと同一であることをバイト比較。
+- 依存関係監査：修正版へ更新後、既知の検出0件。
+
+## 成果物
+
+`release/Phrase-0.1.0-Windows.exe`
+
+SHA-256：`E85DE829B09AED05A489219CBDA84480E591EDDF36F5CB325BAE036FCCBDCF1D`
+
+Windows 11 (build 26200)、Electron 44.3.0、Node 24.19.0（パッケージ作成）で確認。未署名のポータブル版。インストール用セットアップやmacOS版の成果物は作成していない。
+
+この検証は添付計画の全リリースゲート完了を意味しない。未検証事項はREADMEおよびacceptance.md参照。
